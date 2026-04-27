@@ -1,13 +1,10 @@
 'use client';
 
-import { Suspense } from 'react';
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-// ... rest of the code
-import { useEffect, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { api, fmtINR } from '@/lib/api';
-import { MapPin, Star, Filter, Search, Leaf } from 'lucide-react';
+import { MapPin, Star, Search, Leaf } from 'lucide-react';
 
 type Listing = {
   id: string; display_id: string; variety: string; quantity: number; unit: string;
@@ -24,12 +21,17 @@ const CROP_EMOJI: Record<string, string> = {
   Banana: '🍌', Turmeric: '🌿', 'Red Chilli': '🌶️', Groundnut: '🥜', Cotton: '🌱',
 };
 
-export default function BrowsePage() {
+// 1. Separate the logic into a internal component
+function BrowseContent() {
   const [listings, setListings] = useState<Listing[]>([]);
   const [category, setCategory] = useState('All');
   const [search, setSearch] = useState('');
   const [state, setState] = useState('');
   const [loading, setLoading] = useState(true);
+  
+  // These hooks require a Suspense boundary during Vercel builds
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     setLoading(true);
@@ -124,5 +126,14 @@ export default function BrowsePage() {
         ))}
       </div>
     </div>
+  );
+}
+
+// 2. The Exported Page must wrap the content in Suspense
+export default function BrowsePage() {
+  return (
+    <Suspense fallback={<div className="text-center py-12">Loading page...</div>}>
+      <BrowseContent />
+    </Suspense>
   );
 }
