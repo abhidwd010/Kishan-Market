@@ -1,5 +1,6 @@
 // src/routes/payments.js — Razorpay integration: premium + escrow + webhook
-const router = require('express').Router();
+const express = require('express'); // 👈 This is likely missing or misspelled
+const router = express.Router();
 const crypto = require('crypto');
 const { z } = require('zod');
 const Razorpay = require('razorpay');
@@ -111,8 +112,10 @@ router.post('/escrow/order', requireAuth, async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+
 // ─── Razorpay Webhook ────────────────────────────
 router.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+
   try {
     const signature = req.headers['x-razorpay-signature'];
     const expected = crypto.createHmac('sha256', process.env.RAZORPAY_WEBHOOK_SECRET)
