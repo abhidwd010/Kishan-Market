@@ -1,0 +1,43 @@
+{
+  "name": "kisanmarket-backend",
+  "version": "1.0.0",
+  "description": "KisanMarket REST API + Real-time messaging",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "migrate": "psql $DATABASE_URL -f ../database/schema.sql",
+    "test": "jest --detectOpenHandles",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "zod": "^3.23.8",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.4.0",
+    "rate-limit-redis": "^4.2.0",
+    "ioredis": "^5.4.1",
+    "socket.io": "^4.7.5",
+    "@socket.io/redis-adapter": "^8.3.0",
+    "razorpay": "^2.9.4",
+    "cloudinary": "^2.4.0",
+    "axios": "^1.7.4",
+    "pino": "^9.3.2",
+    "pino-http": "^10.2.0",
+    "dotenv": "^16.4.5",
+    "uuid": "^10.0.0",
+    "cookie-parser": "^1.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "eslint": "^9.9.0"
+  },
+  "engines": { "node": ">=20.0.0" }
+}
