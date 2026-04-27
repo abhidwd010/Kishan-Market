@@ -1,4 +1,5 @@
 // app/login/page.tsx — OTP-based login/signup
+import { Suspense } from 'react';
 'use client';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -8,8 +9,7 @@ import { Phone, KeyRound, ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const STATES = ['Gujarat', 'Maharashtra', 'Punjab', 'Madhya Pradesh', 'Tamil Nadu', 'Karnataka', 'Uttar Pradesh', 'Rajasthan', 'Telangana', 'Andhra Pradesh', 'West Bengal', 'Bihar'];
-
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
   const params = useSearchParams();
   const redirect = params.get('redirect') || '/';
@@ -117,5 +117,12 @@ export default function LoginPage() {
         )}
       </div>
     </div>
+  );
+}
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading Login...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }
