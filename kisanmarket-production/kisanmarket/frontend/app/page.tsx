@@ -1,5 +1,9 @@
-// app/page.tsx — Browse listings (public, no login required)
 'use client';
+
+import { Suspense } from 'react';
+import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+// ... rest of the code
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { api, fmtINR } from '@/lib/api';
