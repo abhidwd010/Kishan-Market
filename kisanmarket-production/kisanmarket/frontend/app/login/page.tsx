@@ -1,7 +1,5 @@
-// app/login/page.tsx — OTP-based login/signup
 'use client';
 import { Suspense } from 'react';
-
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { api } from '@/lib/api';
