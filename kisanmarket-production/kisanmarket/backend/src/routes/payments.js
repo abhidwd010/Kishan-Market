@@ -1,4 +1,4 @@
-// src/routes/payments.js — Razorpay integration: premium + escrow + webhook
+const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
 const { z } = require('zod');
@@ -168,5 +168,4 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
   }
 });
 
-const express = require('express');
 module.exports = router;
