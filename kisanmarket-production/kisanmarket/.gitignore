@@ -1,0 +1,7 @@
+# .gitignore — paste this in your project root
+kisanmarket/backend/.env
+kisanmarket/frontend/.env.local
+kisanmarket/backend/node_modules/
+kisanmarket/frontend/node_modules/
+kisanmarket/frontend/.next/
+*.log
