@@ -32,7 +32,7 @@ const server = http.createServer(app);
 app.set('trust proxy', 1);
 app.use(helmet());
 app.use(cors({
-  origin: process.env.APP_URL?.split(',') || 'http://localhost:3000',
+  origin: process.env.APP_URL?.split(',') || 'https://kishan-market.vercel.app/',
   credentials: true,
 }));
 app.use(compression());
